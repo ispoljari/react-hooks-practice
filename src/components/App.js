@@ -1,10 +1,11 @@
 import React from "react";
-import SimpleUseState from "./SimpleUseState";
+import { SimpleUseState, AjaxWithHooks } from "./";
 
 const App = () => (
   <>
     <h1>Hooks Practice</h1>
     <SimpleUseState />
+    <AjaxWithHooks />
   </>
 );
 export default App;
