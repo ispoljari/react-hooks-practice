@@ -5,8 +5,6 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "@emmetio/abbreviation": "2.0.0-rc.2",
-    "emmet": "2.0.0-rc.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-scripts": "3.0.1",
