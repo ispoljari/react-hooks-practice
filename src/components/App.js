@@ -5,7 +5,7 @@ const App = () => (
   <>
     <h1>Hooks Practice</h1>
     <SimpleUseState />
-    <AjaxWithHooks />
+    {/* <AjaxWithHooks /> */}
   </>
 );
 export default App;
