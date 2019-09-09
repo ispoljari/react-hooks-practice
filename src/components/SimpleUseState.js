@@ -1,4 +1,5 @@
 import React, { useState, useReducer } from "react";
+import { Filter, TodoList. AddTodo } from './';'
 import uuid from "uuid/v4";
 
 const initialTodos = [
@@ -114,42 +115,9 @@ const SimpleUseState = () => {
   return (
     <div>
       <h2>Simple useState - TODO list</h2>
-      <ul>
-        {filteredTodos.map(todo => (
-          <li key={todo.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todos.complete}
-                onChange={() => handleTodoChange(todo)}
-                style={{
-                  display: "none"
-                }}
-              />
-              <span
-                style={{
-                  textDecoration: todo.complete ? "line-through" : "none"
-                }}
-              >
-                {todo.task}
-              </span>
-            </label>
-          </li>
-        ))}
-        <form onSubmit={handleFormSubmit}>
-          <input type="text" value={task} onChange={handleInputChange} />
-          <button type="submit">Add</button>
-        </form>
-        <button type="button" name="show-all" onClick={handleShowAll}>
-          SHOW ALL
-        </button>
-        <button type="button" name="show-complete" onClick={handleComplete}>
-          SHOW COMPLETE
-        </button>
-        <button type="button" name="show-incomplete" onClick={handleIncomplete}>
-          SHOW INCOMPLETE
-        </button>
-      </ul>
+      <Filter dispatch={dispatchFilter} />
+      <TodoList dispatch={dispatchTodos} todos={filteredTodos} />
+      <AddTodo dispatch={dispatchTodos} />
     </div>
   );
 };
