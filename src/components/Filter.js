@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "./";
 
-const Filter = ({ dispatch }) => {
+const Filter = () => {
+  const { dispatchFilter } = useContext(TodoContext);
+
   const handleShowAll = () => {
-    dispatch({ type: "SHOW_ALL" });
+    dispatchFilter({ type: "SHOW_ALL" });
   };
 
   const handleShowComplete = () => {
-    dispatch({ type: "SHOW_COMPLETE" });
+    dispatchFilter({ type: "SHOW_COMPLETE" });
   };
 
   const handleShowIncomplete = () => {
-    dispatch({ type: "SHOW_INCOMPLETE" });
+    dispatchFilter({ type: "SHOW_INCOMPLETE" });
   };
   return (
     <div>

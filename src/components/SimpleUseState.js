@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import { Filter, TodoList. AddTodo } from './';'
+import { Filter, TodoList, AddTodo, TodoContext } from "./";
 import uuid from "uuid/v4";
 
 const initialTodos = [
@@ -65,40 +65,6 @@ const SimpleUseState = () => {
   const [task, setTask] = useState("");
   const [filter, dispatchFilter] = useReducer(filterReducer, initialState);
 
-  const handleInputChange = e => {
-    const inputValue = e.target.value;
-    setTask(inputValue);
-  };
-
-  const handleFormSubmit = e => {
-    e.preventDefault();
-
-    if (task) {
-      dispatchTodos({ type: "ADD_TODO", task, id: uuid() });
-    }
-
-    setTask("");
-  };
-
-  const handleTodoChange = todo => {
-    dispatchTodos({
-      type: todo.complete ? "UNDO_TODO" : "DO_TODO",
-      id: todo.id
-    });
-  };
-
-  const handleShowAll = () => {
-    dispatchFilter({ type: "SHOW_ALL" });
-  };
-
-  const handleComplete = () => {
-    dispatchFilter({ type: "SHOW_COMPLETE" });
-  };
-
-  const handleIncomplete = () => {
-    dispatchFilter({ type: "SHOW_INCOMPLETE" });
-  };
-
   const filteredTodos = todos.filter(todo => {
     if (filter === "ALL") {
       return true;
@@ -115,9 +81,13 @@ const SimpleUseState = () => {
   return (
     <div>
       <h2>Simple useState - TODO list</h2>
-      <Filter dispatch={dispatchFilter} />
-      <TodoList dispatch={dispatchTodos} todos={filteredTodos} />
-      <AddTodo dispatch={dispatchTodos} />
+      <TodoContext.Provider
+        value={{ dispatchTodos, dispatchFilter, filteredTodos }}
+      >
+        <Filter />
+        <TodoList />
+        <AddTodo />
+      </TodoContext.Provider>
     </div>
   );
 };
